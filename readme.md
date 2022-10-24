@@ -1,3 +1,6 @@
+## Fork info
+This is Spider's fork, which I use to maintain configs for keyboards I make. It's unlikely I'll modify base qmk much.
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
