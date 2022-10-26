@@ -2,6 +2,11 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+//====================TODO=========================
+// -LED lighting during use
+// -LED lighting (contextual, for visual feedback when caps lock on, etc)
+//
+
 // CURRENT KEYCAP LAYOUT
 /*,-----------------------------------------------------------.
 * |Esc | 1|  2|  3|  4|  5|  6|  7|  8|  9|  0|  -|  =| `| DEL|
@@ -27,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LAYOUT_all(
       QK_BOOT, KC_F1,   KC_F2,   KC_F3,   KC_F4,      KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,   KC_F10,  KC_F11,   KC_F12,  KC_F13,   KC_F14,
       KC_NO,   KC_WH_U, KC_MS_UP,KC_WH_D, KC_NO,      KC_HOME,KC_CALC,KC_NO,  KC_INS, KC_NO,   KC_PSCR, KC_SLCK,  KC_PAUS,           KC_DEL,
-      KC_NO,   KC_MS_L, KC_MS_D, KC_MS_R, KC_MS_BTN2, KC_END, KC_PGDN,KC_NO,  KC_NO,  KC_NO,   KC_HOME, KC_PGUP,  KC_NO,             KC_ENT,
+      KC_CAPS, KC_MS_L, KC_MS_D, KC_MS_R, KC_MS_BTN2, KC_END, KC_PGDN,KC_NO,  KC_NO,  KC_NO,   KC_HOME, KC_PGUP,  KC_NO,             KC_ENT,
       KC_LSFT, KC_NO,   KC_NO,   KC_APP,  BL_STEP,    BL_TOGG,KC_NO,  KC_VOLD,KC_VOLU,KC_MUTE, KC_END,  KC_PGDN,  KC_RSFT, KC_PGUP,  KC_INS,
       KC_LCTL, KC_LGUI, KC_LALT,                          KC_MS_BTN1,                          KC_RGUI, MO(1),    KC_HOME, KC_PGDOWN,KC_END),
 
