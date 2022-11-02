@@ -68,7 +68,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_TIME_TO_MAX    64
 
 // misc
-#define COMBO_TERM 30
+#define COMBO_TERM 45
 #define U_MACRO_VA_ARGS(macro, ...) macro(__VA_ARGS__) // miryoku macro
 
 // space optimization

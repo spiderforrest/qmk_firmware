@@ -136,7 +136,7 @@ KC_ESC, 	KC_1, 		KC_2, 		KC_3, 		KC_4, 		KC_5, 								KC_6, 		KC_7, 		KC_8, 		K
 KC_GRV, 	KC_Y, 		KC_Q, 		KC_W, 		KC_E, 		KC_R, 								KC_U, 		KC_I, 		KC_UP, 		KC_O, 		KC_P, 		KC_MINS,
 KC_TAB, 	KC_G, 		KC_A, 		KC_S, 		KC_D, 		KC_F, 								KC_RCTL, 	KC_LEFT,	KC_DOWN, 	KC_RGHT, 	KC_RSFT,	KC_QUOT,
 KC_LALT, 	KC_Z, 		KC_X, 		KC_C, 		KC_V, 		KC_B, 		KC_F3,		KC_M,		KC_RALT, 	KC_K, 		KC_DOT, 	KC_SLSH, 	KC_SCLN, 	KC_BSLS,
-                        KC_N, 		KC_H, 		KC_LCTL, 	KC_SPC,		 						KC_TRNS, 	KC_BSPC, 	KC_TRNS, 	TG(GAME)
+                        KC_N, 		KC_H, 		KC_LCTL, 	KC_SPC,		 						KC_T, 	KC_BSPC, 	KC_TRNS, 	TG(GAME)
 	), [UTILITY] = LAYOUT(
 KC_ASTG,	KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_SLEP, 							BOTTOM, 	KC_NO,	 	KC_NO, 		RESET, 		DEBUG, 		EEP_RST,
 KC_ASUP,	KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_WAKE, 							WHEART, 	GHEART,		HEART, 		NK_ON, 		GUI_ON,	 	GE_SWAP,
@@ -150,6 +150,43 @@ void keyboard_post_init_user() {
     //	autoshift_disable();
     layer_on(DANSEN);
 }
+
+// oo shiny screens
+#ifdef OLED_ENABLE
+
+// flips the display 180 degrees if offhand
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+  if (!is_keyboard_master())
+    return OLED_ROTATION_180;
+ return rotation;
+}
+
+// load libs
+const char *read_layer_state(void);
+const char *read_logo(void);
+void set_keylog(uint16_t keycode, keyrecord_t *record);
+const char *read_keylog(void);
+const char *read_keylogs(void);
+
+// const char *read_mode_icon(bool swap);
+// const char *read_host_led_state(void);
+// void set_timelog(void);
+// const char *read_timelog(void);
+
+bool oled_task_user(void) {
+  if (is_keyboard_master()) {
+    oled_write_ln(read_layer_state(), false);
+    oled_write_ln(read_keylog(), false);
+    oled_write_ln(read_keylogs(), false);
+    //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
+    //oled_write_ln(read_host_led_state(), false);
+    //oled_write_ln(read_timelog(), false);
+  } else {
+    oled_write(read_logo(), false);
+  }
+    return false;
+}
+#endif // OLED_ENABLE
 
 // combos!
 enum combo_events {
@@ -199,7 +236,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // i'm not a bottom this is for bullying
             case BOTTOM:
                 if (record->event.pressed)
-                    SEND_STRING(":point_right::point_left::pleading_face:");
+                    SEND_STRING(":point_right\t:point_left\t:pleading\t");
                 break;
         }
 

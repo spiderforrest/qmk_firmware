@@ -22,7 +22,8 @@ UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight.
 SWAP_HANDS_ENABLE = yes      # Enable one-hand typing
-OLED_DRIVER_ENABLE= no     # OLED display
+OLED_ENABLE = yes           # OLED display
+RAW_ENABLE = no             # Send raw data back and forth
 
 KEY_LOCK_ENABLE = yes    		# key to supress next keyup
 DYNAMIC_MACRO_ENABLE = no   	# on the fly macros
@@ -32,10 +33,10 @@ AUTO_SHIFT_ENABLE = no			# holding a key emulates shift. pinkies love him.
 
 
 # If you want to change the display of OLED, you need to change here
-SRC +=  # ./lib/logo_reader.c \
-        # ./lib/keylogger.c \
-        # ./lib/mode_icon_reader.c \
+SRC +=   ./lib/logo_reader.c \
+         ./lib/keylogger.c \
+         ./lib/mode_icon_reader.c \
+        ./lib/layer_state_reader.c \
         # ./lib/host_led_state_reader.c \
         # ./lib/timelogger.c \
  		# ./lib/rgb_state_reader.c \
-        # ./lib/layer_state_reader.c \
