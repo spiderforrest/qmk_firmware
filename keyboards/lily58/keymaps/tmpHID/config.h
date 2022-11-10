@@ -70,7 +70,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // misc
 #define COMBO_TERM 45
 #define U_MACRO_VA_ARGS(macro, ...) macro(__VA_ARGS__) // miryoku macro
-#define SPLIT_LAYER_STATE_ENABLE //share layer with other hand
 
 // space optimization
 #undef LOCKING_SUPPORT_ENABLE		        // disabling lock key support
