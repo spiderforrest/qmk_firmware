@@ -6,6 +6,7 @@ LTO_ENABLE = yes			 # optimize space
 SPACE_CADET_ENABLE = no	   # disabling for space
 GRAVE_ESC_ENABLE = no	   # disabling for space
 MAGIC_ENABLE = no		   # disabling for space
+EXTRAFLAGS += -flto				# direct arg for link time optimization
 
 BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = yes        # Mouse keys
@@ -31,15 +32,7 @@ DEBOUNCE_TYPE = sym_defer_pk    # i dunno why i picked this but i've literally n
 COMBO_ENABLE = yes   			# key combo features?
 AUTO_SHIFT_ENABLE = no			# holding a key emulates shift. pinkies love him.
 
-Link_Time_Optimization = yes 	# more compile time, less keeb size
-EXTRAFLAGS += -flto				# direct arg for link time optimization
 
 
-# If you want to change the display of OLED, you need to change here
-# SRC +=   ./lib/logo_reader.c \
-	# ./lib/keylogger.c \
-	# ./lib/mode_icon_reader.c \
-	# ./lib/layer_state_reader.c \
-	# ./lib/host_led_state_reader.c \
-	# ./lib/timelogger.c \
-	# ./lib/rgb_state_reader.c \
+SRC +=  ./glcdfont.c \
+        ./lib/logo_reader.c \

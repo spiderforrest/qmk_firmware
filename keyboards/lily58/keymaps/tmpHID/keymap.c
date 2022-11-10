@@ -13,8 +13,10 @@ enum layer_number {
 	DANCELEFT,
 	DANCERIGHT,
 	NAV,
+	MOUSE,
 	MEDIA,
 	NUM,
+	SYM,
 	FUN,
 	// mod layers
 	GAME,
@@ -98,6 +100,12 @@ KC_NO,		RESET,		U_NA,		U_NA,		U_NA,		U_NA,								U_RDO,		KC_NO,		U_CPY,		U_CUT,
 KC_NO,		KC_LGUI,	KC_LALT,	KC_LCTL,	KC_LSFT,	U_NA,								KC_CAPS,	KC_LEFT,	KC_DOWN,	KC_UP,		KC_RGHT,	KC_NO,
 KC_NO,		U_NA,		KC_ALGR,	U_NA,		U_NA,		U_NA,		KC_NO,		KC_NO,		KC_NO,		KC_HOME,	KC_PGDN,	KC_PGUP,	KC_END,		KC_NO,
                         KC_NO,		U_UND,		U_NA,		U_NA,								KC_ENT,		KC_BSPC,	KC_DEL,		KC_NO
+	), [MOUSE] = LAYOUT(
+KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
+KC_NO,		RESET,		U_NA,		U_NA,		U_NA,		U_NA,								U_RDO,		U_PST,		U_CPY,		U_CUT,		U_UND,		KC_NO,
+KC_NO,		KC_LGUI,	KC_LALT,	KC_LCTL,	KC_LSFT,	U_NA,								KC_NO,		KC_MS_L,	KC_MS_D,	KC_MS_U,	KC_MS_R,	KC_NO,
+KC_NO,		U_NA,		KC_ALGR,	U_NA,		U_NA,		U_NA,		KC_NO,		KC_NO,		KC_NO,		KC_WH_L,	KC_WH_D,	KC_WH_U,	KC_WH_R,	KC_NO,
+                        KC_NO,		U_NA,		U_NA,		U_NA,								KC_BTN1,	KC_BTN3,	KC_BTN2,	KC_NO
 	), [MEDIA] = LAYOUT(
 KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
 KC_NO,		RESET,		U_NA,		U_NA,		U_NA,		U_NA,								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
@@ -110,6 +118,12 @@ KC_NO,		KC_LBRC,	KC_7,		KC_8,		KC_9,		KC_RBRC,							KC_NO,		U_NA,		U_NA,		U_NA,
 KC_NO,		KC_SCLN,	KC_4,		KC_5,		KC_6,		KC_EQL,								U_NA,		KC_LSFT,	KC_LCTL,	KC_LALT,	KC_LGUI,	KC_NO,
 KC_NO,		KC_GRV,		KC_1,		KC_2,		KC_3,		KC_BSLS,	KC_NO,		KC_NO,		U_NA,		U_NA,		U_NA,		KC_ALGR,	U_NA,		KC_NO,
                         KC_NO,		KC_DOT,		KC_0,		KC_MINS,							U_NA,		U_NA,		U_NA,		KC_NO
+	), [SYM] = LAYOUT(
+KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
+KC_NO,		KC_LCBR,	KC_AMPR,	KC_ASTR,	KC_LPRN,	KC_RCBR,							U_NA,		U_NA,		U_NA,		U_NA,		RESET,		KC_NO,
+KC_NO,		KC_COLN,	KC_DLR,		KC_PERC,	KC_CIRC,	KC_PLUS,							U_NA,		KC_LSFT,	KC_LCTL,	KC_LALT,	KC_LGUI,	KC_NO,
+KC_NO,		KC_TILD,	KC_EXLM,	KC_AT,		KC_HASH,	KC_PIPE,	KC_NO,		KC_NO,		U_NA,		U_NA,		U_NA,		KC_ALGR,	U_NA,		KC_NO,
+                        KC_NO,		KC_LPRN,	KC_RPRN,	KC_UNDS,							U_NA,		U_NA,		U_NA,		KC_NO
 	), [FUN] = LAYOUT(
 KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
 KC_NO,		KC_F12,		KC_F7,		KC_F8,		KC_F9,		KC_PSCR,							U_NA,		U_NA,		U_NA,		U_NA,		RESET,		KC_NO,
@@ -137,76 +151,7 @@ void keyboard_post_init_user() {
     layer_on(DANSEN);
 }
 
-// oo shiny screens
-#ifdef OLED_ENABLE
 
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  if (is_keyboard_master())
-      // vert gives 15 lines with 5 char per line
-    return OLED_ROTATION_270;
-  else
-    return OLED_ROTATION_270;
- return rotation;
-}
-
-// load libs
-/* const char *read_layer_state(void); */
-const char *read_logo(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
-
-// const char *read_mode_icon(bool swap);
-// const char *read_host_led_state(void);
-// void set_timelog(void);
-// const char *read_timelog(void);
-
-bool oled_task_user(void) {
-  /* if (is_keyboard_master()) { */
-      oled_set_cursor(0, 15);
-      switch (get_highest_layer(layer_state)) {
-          case DANSEN:
-              oled_write_ln("dance", false);
-              break;
-          case DANCELEFT:
-              oled_write_ln("<<<<<", true);
-              break;
-          case DANCERIGHT:
-              oled_write_ln(">>>>>", true);
-              break;
-          case NAV:
-              oled_write_ln("nav", false);
-              break;
-          case MEDIA:
-              oled_write_ln("media", false);
-              break;
-          case NUM:
-              oled_write_ln("num", false);
-              break;
-          case FUN:
-              oled_write_ln("sym", false);
-              break;
-          case GAME:
-              oled_write_ln("games", true);
-              break;
-          case UTILITY:
-              oled_write_ln("|||||", true);
-              break;
-          default:
-              oled_write_ln("oop", true);
-              break;
-      }
-      /* oled_write_ln(read_keylog(), false); */
-      /* oled_write_ln(read_keylogs(), false); */
-      //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-      //oled_write_ln(read_host_led_state(), false);
-      //oled_write_ln(read_timelog(), false);
-  /* } else { */
-  /*     oled_write(read_logo(), false); */
-  /* } */
-  return false;
-}
-#endif // OLED_ENABLE
 
 // combos!
 enum combo_events {
@@ -292,10 +237,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case NAV:
             break;
 
+        case MOUSE:
+            break;
+
         case MEDIA:
             break;
 
         case NUM:
+            break;
+
+        case SYM:
             break;
 
         case FUN:
@@ -305,5 +256,162 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
     }
     return state;
+}
+
+
+
+// HID input
+
+// Add headers for raw hid communication
+#include <split_scomm.h>
+#include "raw_hid.h"
+
+bool is_hid_connected = false; // Flag indicating if we have a PC connection yet
+uint8_t screen_max_count = 0;  // Number of info screens we can scroll through (set by connecting node script)
+uint8_t screen_show_index = 0; // Current index of the info screen we are displaying
+uint8_t screen_data_buffer[SERIAL_SCREEN_BUFFER_LENGTH - 1] =  {0}; // Buffer used to store the screen data sent by connected node script
+int screen_data_index = 0; // Current index into the screen_data_buffer that we should write to
+
+void raw_hid_send_screen_index(void) {
+  // Send the current info screen index to the connected node script so that it can pass back the new data
+  uint8_t send_data[32] = {0};
+  send_data[0] = screen_show_index + 1; // Add one so that we can distinguish it from a null byte
+  raw_hid_send(send_data, sizeof(send_data));
+}
+
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+  // PC connected, so set the flag to show a message on the master display
+  is_hid_connected = true;
+
+  // Initial connections use '1' in the first byte to indicate this
+  if (length > 1 && data[0] == 1) {
+    // New connection so restart screen_data_buffer
+    screen_data_index = 0;
+
+    // The second byte is the number of info screens the connected node script allows us to scroll through
+    screen_max_count = data[1];
+    if (screen_show_index >= screen_max_count) {
+      screen_show_index = 0;
+    }
+
+    // Tell the connection which info screen we want to look at initially
+    raw_hid_send_screen_index();
+    return;
+  }
+
+  // Otherwise the data we receive is one line of the screen to show on the display
+  if (length >= 21) {
+    // Copy the data into our buffer and increment the number of lines we have got so far
+    memcpy((char*)&screen_data_buffer[screen_data_index * 21], data, 21);
+    screen_data_index++;
+
+    // Once we reach 4 lines, we have a full screen
+    if (screen_data_index == 4) {
+      // Reset the buffer back to receive the next full screen data
+      screen_data_index = 0;
+
+      // Now get ready to transfer the whole 4 lines to the slave side of the keyboard.
+      // First clear the transfer buffer with spaces just in case.
+      memset((char*)&serial_slave_screen_buffer[0], ' ', sizeof(serial_slave_screen_buffer));
+
+      // Copy in the 4 lines of screen data, but start at index 1, we use index 0 to indicate a connection in the slave code
+      memcpy((char*)&serial_slave_screen_buffer[1], screen_data_buffer, sizeof(screen_data_buffer));
+
+      // Set index 0 to indicate a connection has been established
+      serial_slave_screen_buffer[0] = 1;
+
+      // Make sure to zero terminate the buffer
+      serial_slave_screen_buffer[sizeof(serial_slave_screen_buffer) - 1] = 0;
+
+      // Indicate that the screen data has changed and needs transferring to the slave side
+      hid_screen_change = true;
+    }
+  }
+}
+
+// Screen printing
+char layer_state_str[20];
+const char *write_layer(void) {
+  // Print the layer name for the current layer
+  switch (biton32(layer_state))	{ // base layers
+  case DANSEN:
+    snprintf(layer_state_str, sizeof(layer_state_str), "dansen'");
+    break;
+  case DANCELEFT:
+    snprintf(layer_state_str, sizeof(layer_state_str), "dance left");
+    break;
+  case NAV:
+    snprintf(layer_state_str, sizeof(layer_state_str), "dance right");
+    break;
+  case MOUSE:
+    snprintf(layer_state_str, sizeof(layer_state_str), "mouse");
+    break;
+  case MEDIA:
+    snprintf(layer_state_str, sizeof(layer_state_str), "media");
+    break;
+  case SYM:
+    snprintf(layer_state_str, sizeof(layer_state_str), "symbols");
+    break;
+  case FUN:
+    snprintf(layer_state_str, sizeof(layer_state_str), "functions");
+    break;
+  case GAME:
+    snprintf(layer_state_str, sizeof(layer_state_str), "game compatibility");
+    break;
+  case UTILITY:
+    snprintf(layer_state_str, sizeof(layer_state_str), "utility");
+    break;
+  default:
+    snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Id-%d", layer_state);
+  }
+
+  return layer_state_str;
+}
+
+char rbf_info_str[24];
+
+char hid_info_str[20];
+const char *write_hid(void) {
+  snprintf(hid_info_str, sizeof(hid_info_str), "%s", is_hid_connected ? "connected." : " ");
+  return hid_info_str;
+}
+
+void write_slave_info_screen(struct CharacterMatrix *matrix) {
+  if (serial_slave_screen_buffer[0] > 0) {
+    // If the first byte of the buffer is non-zero we should have a full set of data to show,
+    // So we copy it into the display
+    // wcgw
+    oled_write(matrix, (char*)serial_slave_screen_buffer + 1);
+  } else {
+    // Otherwise we just draw the logo
+    oled_write_ln(matrix, "");
+    oled_write(matrix, read_logo());
+  }
+}
+
+void matrix_render_user(struct CharacterMatrix *matrix) {
+  if (is_master) {
+    // Show layer and rgb values on the master side
+    oled_write_ln(matrix, write_layer());
+    oled_write_ln(matrix, " ");
+    oled_write(matrix, write_hid()); // Add if we have a connection established
+  } else {
+    // Show the logo or screen info on the slave side
+    write_slave_info_screen(matrix);
+  }
+}
+
+void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *source) {
+  if (memcmp(dest->display, source->display, sizeof(dest->display))) {
+    memcpy(dest->display, source->display, sizeof(dest->display));
+    dest->dirty = true;
+  }
+}
+
+void iota_gfx_task_user(void) {
+  struct CharacterMatrix matrix;
+  matrix_clear(&matrix);
+  matrix_render_user(&matrix);
+  matrix_update(&display, &matrix);
 }
 
