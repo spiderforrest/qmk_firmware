@@ -1,9 +1,3 @@
-# MCU name
-MCU = atmega32u4
-
-# Bootloader selection
-BOOTLOADER = atmel-dfu
-
 # Build Options
 #   change yes to no to disable
 #
@@ -19,5 +13,3 @@ SLEEP_LED_ENABLE = no  		    # Breathing sleep LED during USB suspend
 VELOCIKEY_ENABLE = yes			 # as above(does not need above on), but linked to rgb
 AUDIO_ENABLE = no           # Audio output
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
-
-LAYOUTS = 60_ansi 60_ansi_split_bs_rshift 60_iso 60_iso_split_bs_rshift
