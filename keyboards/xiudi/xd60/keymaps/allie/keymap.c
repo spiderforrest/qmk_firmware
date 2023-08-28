@@ -56,11 +56,6 @@ enum combo_events {
     TABDEL_LAYER,
     FJ_ESC,
     COMBO_LENGTH // must be last!
-};
-// get total combo count by checking last enum value
-uint16_t COMBO_LEN = COMBO_LENGTH;
-
-// combo triggers
 const uint16_t PROGMEM tabdel_layer[] = {KC_TAB, KC_BSPC, COMBO_END};
 const uint16_t PROGMEM fj_esc[] = {KC_F, KC_J, COMBO_END};
 //combo actions
