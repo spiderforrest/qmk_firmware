@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 // spider's keyboard layout!
-// currently does not utilize the screens or any lighting
 // my dansen layer system is heavily built on and includes copy pasted code from the miryoku! you can check it out @ github.com/manna-harbour/miryoku
 
 // define layer vars
@@ -81,37 +80,37 @@ TG(GAME),	KC_Q,		KC_X, 		KC_C, 		KC_D, 		KC_B, 		SH_LBRC,	SH_RBRC,	KC_M,		KC_H, 
                         OS_UTL, 	LT(MEDIA,KC_ESC),LT(NAV,KC_SPC),LT(DANCELEFT,KC_TAB),	 	LT(DANCERIGHT,KC_ENT),LT(NUM,KC_BSPC),LT(FUN,KC_DEL),OS_UTL
 // aux miryoku layers
 	), [DANCELEFT] = LAYOUT( // mouse and mirrored
-KC_GRV,		KC_0, 		KC_9, 		KC_8, 		KC_7, 		KC_6,					   			KC_5, 		KC_4, 		KC_3, 		KC_2, 		KC_1, 		KC_NO,
+KC_GRV,		KC_0, 		KC_9, 		KC_8, 		KC_7, 		KC_6,					   			KC_5, 		KC_4, 		KC_3, 		KC_2, 		KC_1, 		KC_ESC,
 KC_MINS,	KC_SCLN,	KC_Y,		KC_U, 		KC_L, 		KC_DOT,								U_RDO,		U_PST,		U_CPY,		U_CUT,		U_UND,		KC_NO,
 KC_QUOT, 	MOD_O,		MOD_I,		MOD_E,		MOD_N,		KC_K,					   	  		KC_NO,		KC_MS_L,	KC_MS_D,	KC_MS_U,	KC_MS_R,	KC_BTN1,
 KC_EXLM,	KC_SLSH,	KC_V, 		KC_J, 		KC_H, 		KC_M, 		SH_LBRC,	SH_RBRC,	KC_NO,		KC_WH_L,	KC_WH_D,	KC_WH_U,	KC_WH_R,	KC_NO,
                         LYR_HM,	 	LT(FUN,KC_DEL),LT(NUM,KC_BSPC),SH_T(KC_ENT),			 	KC_BTN1,	KC_BTN3,	KC_BTN2,	LYR_HM
 	), [DANCERIGHT] = LAYOUT( // symbols and mirrored
-KC_NO,		KC_0, 		KC_9, 		KC_8, 		KC_7, 		KC_6,					   			KC_5, 		KC_4, 		KC_3, 		KC_2, 		KC_1, 		KC_GRV,
+KC_GRV,		KC_0, 		KC_9, 		KC_8, 		KC_7, 		KC_6,					   			KC_5, 		KC_4, 		KC_3, 		KC_2, 		KC_1, 		KC_ESC,
 KC_NO, 		KC_LCBR,	KC_AMPR,	KC_ASTR,	KC_LPRN,	KC_RCBR,							KC_COMM, 	KC_P, 		KC_F, 		KC_W, 		KC_Z,		KC_MINS,
 KC_TAB,		KC_COLN,	KC_DLR,		KC_PERC,	KC_CIRC,	KC_PLUS,				   	  		KC_G, 		MOD_T, 		MOD_S, 		MOD_R, 		MOD_A, 		KC_QUOT,
 KC_NO,		KC_TILD,	KC_EXLM,	KC_AT,		KC_HASH,	KC_PIPE,	SH_LBRC,	SH_RBRC,	KC_B,		KC_D, 		KC_C, 		KC_X, 		KC_Q, 		KC_EXLM,
                         LYR_HM,	 	KC_LPRN,	KC_RPRN,	KC_UNDS,						 	SH_T(KC_TAB),LT(NAV,KC_SPC),LT(MEDIA,KC_ESC),LYR_HM
 	), [NAV] = LAYOUT(
-KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
+KC_ESC,		KC_1, 		KC_2, 		KC_3, 		KC_4, 		KC_5,					   			KC_6, 		KC_7, 		KC_8, 		KC_9, 		KC_0, 		KC_GRV,
 KC_NO,		RESET,		U_NA,		U_NA,		U_NA,		U_NA,								U_RDO,		KC_NO,		U_CPY,		U_CUT,		U_UND,		KC_NO,
 KC_NO,		KC_LGUI,	KC_LALT,	KC_LCTL,	KC_LSFT,	U_NA,								KC_CAPS,	KC_LEFT,	KC_DOWN,	KC_UP,		KC_RGHT,	KC_NO,
 KC_NO,		U_NA,		KC_ALGR,	U_NA,		U_NA,		U_NA,		KC_NO,		KC_NO,		KC_NO,		KC_HOME,	KC_PGDN,	KC_PGUP,	KC_END,		KC_NO,
                         KC_NO,		U_UND,		U_NA,		U_NA,								KC_ENT,		KC_BSPC,	KC_DEL,		KC_NO
 	), [MEDIA] = LAYOUT(
-KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
+KC_ESC,		KC_1, 		KC_2, 		KC_3, 		KC_4, 		KC_5,					   			KC_6, 		KC_7, 		KC_8, 		KC_9, 		KC_0, 		KC_GRV,
 KC_NO,		RESET,		U_NA,		U_NA,		U_NA,		U_NA,								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
 KC_NO,		KC_LGUI,	KC_LALT,	KC_LCTL,	KC_LSFT,	U_NA,								OUT_AUTO,	KC_MPRV,	KC_VOLD,	KC_VOLU,	KC_MNXT,	KC_NO,
 KC_NO,		U_NA,		KC_ALGR,	U_NA,		U_NA,		U_NA,		KC_NO,		KC_NO,		KC_NO,		KC_NO,		KC_KB_MUTE, KC_KB_MUTE,	KC_NO,		KC_NO,
                         KC_NO,		U_NA,		U_NA,		U_NA,								KC_MSTP,	KC_MPLY,	KC_MUTE,	KC_NO
 	), [NUM] = LAYOUT(
-KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
+KC_ESC,		KC_1, 		KC_2, 		KC_3, 		KC_4, 		KC_5,					   			KC_6, 		KC_7, 		KC_8, 		KC_9, 		KC_0, 		KC_GRV,
 KC_NO,		KC_LBRC,	KC_7,		KC_8,		KC_9,		KC_RBRC,							KC_NO,		U_NA,		U_NA,		U_NA,		RESET,		KC_NO,
 KC_NO,		KC_SCLN,	KC_4,		KC_5,		KC_6,		KC_EQL,								U_NA,		KC_LSFT,	KC_LCTL,	KC_LALT,	KC_LGUI,	KC_NO,
 KC_NO,		KC_GRV,		KC_1,		KC_2,		KC_3,		KC_BSLS,	KC_NO,		KC_NO,		U_NA,		U_NA,		U_NA,		KC_ALGR,	U_NA,		KC_NO,
                         KC_NO,		KC_DOT,		KC_0,		KC_MINS,							U_NA,		U_NA,		U_NA,		KC_NO
 	), [FUN] = LAYOUT(
-KC_NO,		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 		KC_NO, 								KC_NO, 		KC_NO,		KC_NO,		KC_NO, 		KC_NO, 		KC_NO,
+KC_ESC,		KC_1, 		KC_2, 		KC_3, 		KC_4, 		KC_5,					   			KC_6, 		KC_7, 		KC_8, 		KC_9, 		KC_0, 		KC_GRV,
 KC_NO,		KC_F12,		KC_F7,		KC_F8,		KC_F9,		KC_PSCR,							U_NA,		U_NA,		U_NA,		U_NA,		RESET,		KC_NO,
 KC_NO,		KC_F11,		KC_F4,		KC_F5,		KC_F6,		KC_SLCK,							U_NA,		KC_LSFT,	KC_LCTL,	KC_LALT,	KC_LGUI,	KC_NO,
 KC_NO,		KC_F10,		KC_F1,		KC_F2,		KC_F3,		KC_PAUS,	KC_NO,		KC_NO,		U_NA,		U_NA,		U_NA,		KC_ALGR,	U_NA,		KC_NO,
@@ -138,7 +137,7 @@ void keyboard_post_init_user() {
 }
 
 // oo shiny screens
-#ifdef OLED_ENABLE
+// #ifdef OLED_ENABLE
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   if (is_keyboard_master())
