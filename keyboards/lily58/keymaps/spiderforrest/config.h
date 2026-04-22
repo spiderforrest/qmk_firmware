@@ -28,11 +28,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MASTER_RIGHT
 #define EE_HANDS
 
-// target taphold behavior: holding taphold key TAPHOLD and pressing key GENARIC will register:
-// tap: if GENARIC is relesed first
+// oled
+#define OLED_BRIGHTNESS 10
+
+// target taphold behavior: holding taphold key TAPHOLD and pressing key GENERIC will register:
+// tap: if GENERIC is relesed first
 // hold: if TAPHOLD is released first
 // repeated tap: held past threshold
 // EXCEPT: on pinkeys, there maybe should to be a ~50ms bias to tapping bc when i roll my hands i'm likely to release the taphold key first bc weak fingy
+    // i don't think that's true 5 years later lol
+
+// permissive hold to mod-tap keys is now default
 
 // taphold configs
 #define TAPPING_TERM 160 			        // delay for activating taphold keys
@@ -41,7 +47,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define TAPPING_TERM_PER_KEY
 #define PERMISSIVE_HOLD                     // "rolling" presses(when taphold key is released before other key) register as two taps
 // todo: switch to perm hold per key to only apply to mod-taps, i often wanna hold keys on other layers
-#define IGNORE_MOD_TAP_INTERRUPT            // applies permissive hold to mod-tap keys
 //#define RETRO_TAPPING                       // if no other key is pressed when a taphold key is held, send tap
 //#define RETRO_TAPPING_PER_KEY
 //#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY	// if a second key is tapped while a tap hold is held before the tap term prefer tap, per key, see get_ignore_mod_tap_interrupt()
